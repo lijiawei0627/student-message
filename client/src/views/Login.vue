@@ -57,7 +57,7 @@ export default {
                   localStorage.setItem('Token', token);
                   this.$store.dispatch('setAuthenticated', !this.isEmpty(decode));
                   this.$store.dispatch('setUser', decode)
-                  this.$router.push('/home')
+                  this.$router.push('/index')
                 } else {
                   this.$message({
                     type: 'error',
