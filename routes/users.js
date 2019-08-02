@@ -8,6 +8,7 @@ const passport = require('passport')
 
 route.post('/register', (req, res) => {
   const body = req.body;
+  console.log(body)
   users.findOne({email: body.email}, (err, data) => {
     if (err) throw err;
     if (data) {
@@ -38,7 +39,6 @@ route.post('/register', (req, res) => {
 })
 
 route.post('/login', (req, res) => {
-  console.log(req.body)
   const body = req.body;
   users.findOne({email: body.email}, (err, data) => {
     if (err) throw err;

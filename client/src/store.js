@@ -3,52 +3,54 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-// SET_AUTHENTICATED SET_USER isAuthenticated user setAuthenticated setUser
-
 const types = {
   SET_AUTHENTICATED: 'SET_AUTHENTICATED',
   SET_USER: 'SET_USER'
 }
+
 const state = {
   isAuthenticated: false,
   user: {}
 }
+
 const getters = {
   isAuthenticated: state => state.isAuthenticated,
   user: state => state.user
 }
+
 const mutations = {
-  [types.SET_AUTHENTICATED](state, isAuthenticated) {
+  [types.SET_AUTHENTICATED] (state, isAuthenticated) {
     if (isAuthenticated) {
       state.isAuthenticated = isAuthenticated
     } else {
       state.isAuthenticated = false
     }
   },
-  [types.SET_USER](state, user) {
+  [types.SET_USER] (state, user) {
     if (user) {
       state.user = user
     } else {
       state.user = {}
-    } 
+    }
   }
 }
+
 const actions = {
-  setAuthenticated: ({commit}, isAuthenticated) => {
+  setAuthenticated ({commit}, isAuthenticated) {
     commit(types.SET_AUTHENTICATED, isAuthenticated)
   },
-  setUser: ({commit}, user) => {
+  setUser ({commit} ,user) {
     commit(types.SET_USER, user)
   },
-  clearCurrentState: ({commit}) => {
+  ClearData (commit) {
     commit(types.SET_AUTHENTICATED, false)
-    commit(types.SET_USER, null)
+    commit(types.SET_USER, {})
   }
 }
 
 export default new Vuex.Store({
   state,
+  mutations,
   getters,
-  actions,
-  mutations
+  actions
 })
