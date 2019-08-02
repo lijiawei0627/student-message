@@ -42,8 +42,9 @@ export default {
 <style scoped>
 .HeadNav {
   width: 100%;
-  height: 71px;
+  height: 72px;
   background-color: #042f4b;
+  border: 1px solid #000;
 }
 .HeadNav img {
   width: 60px;
@@ -62,7 +63,7 @@ export default {
 }
 .HeadNav .right .menu {
   float: right;
-  margin: 0 10px;
+  margin: 0 10px 0 6px;
   height: 71px;
   line-height: 71px;
 }
@@ -72,16 +73,15 @@ export default {
 .HeadNav .right .welcome {
   float: right;
   color: #fff;
-  height: 71px;
-  margin: 15px 0px;
+  height: 51px;
+  padding-top: 20px;
+  text-align: center;
 }
 .HeadNav .right .welcome .name {
   color: #409eff;
 }
 .HeadNav .right .welcome div{
   width: 60px;
-  height: 20px;
-  line-height: 20px;
 }
 .HeadNav .right img {
   float: right;
