@@ -2,62 +2,56 @@ const express = require('express')
 const router = express.Router();
 const passport = require('passport')
 
-const profiles = require('../models/Profile');
+const users = require('../models/Profile');
 
 // router.get('/test', (req, res) => {
 //   res.json({msg: 'success'})
 // })
 
 router.post('/add', passport.authenticate('jwt', {session: false}), (req, res) => {
-  console.log(req.body)
-  profiles.create(req.body).then((profile) => {
-    console.log(profile)
-    res.json(profile)
+  const body = req.body
+  console.log(body)
+  users.create(body).then((data) => {
+    res.json(data)
+  }).catch((err) => {
+    console.log(err)
   })
 })
 
 router.get('/', passport.authenticate('jwt', {session: false}), (req, res) => {
-  profiles.find()
-    .then(profile => {
-      if (profile) {
-        res.json(profile)
-      } else {
-        res.status(404).json('没有任何内容')
-      }
-    })
-    .catch((err) => {
-      res.status(404).json(err)
-    })
+  users.find().then((data) => {
+    if (data) {
+      res.status(200).json(data)
+    } else {
+      res.status(404).json('没有任何内容')
+    }
+  }).catch((err) => {
+    console.log(err)
+  })
 })
 
 router.get('/:id', passport.authenticate('jwt', {session: false}), (req, res) => {
-  console.log('5')
-  profiles.findById(req.params.id)
-    .then(profile => {
-      if (profile) {
-        console.log('1')
-        res.json(profile)
-      } else {
-        res.status(404).json('没有任何内容')
-      }
-    })
-    .catch(err => {
-      console.log('0')
-      res.status(404).json(err)
-    })
+  users.findById(req.params.id).then((data) => {
+    if (data) {
+      res.status(200).json(data)
+    } else {
+      res.json('没有任何内容')
+    }
+  }).catch((err) => {
+    console.log(err)
+  })
 })
 
 router.post('/edit/:id', passport.authenticate('jwt', {session: false}),(req, res) => {
-  profiles.findOneAndUpdate({_id: req.params.id}, req.body, (err, data) => {
+  users.findByIdAndUpdate(req.params.id, req.body, {new: true, useFindAndModify: false}, (err, data) => {
     if (err) throw err;
     res.json(data)
   })
 })
 
 router.post('/delete/:id', passport.authenticate('jwt', {session: false}), (req, res) => {
-  profiles.findOneAndRemove({_id: req.params.id}, (err, data) => {
+  users.findByIdAndRemove(req.params.id, {useFindAndModify: false}, (err, data) => {
     if (err) throw err;
-    res.json(data)
   })
 })
 module.exports = router

@@ -34,23 +34,6 @@ const ProfileSchema = new Schema({
   date: {
     type: Date,
     default: Date.now
-  },
-  countenance: {
-    type: String,
-    required: true,
-    default: '无'
-  },
-  nation: {
-    type: String,
-    required: true
-  },
-  tel: {
-    type: String,
-    required: true
-  },
-  address: {
-    type: String,
-    required: true
   }
 })
 
