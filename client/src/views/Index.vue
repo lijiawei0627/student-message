@@ -2,6 +2,7 @@
   <div class="index">
     <head-nav></head-nav>
     <left-nav></left-nav>
+    <router-view></router-view>
   </div>
 </template>
 
